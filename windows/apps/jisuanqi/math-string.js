@@ -1,4 +1,4 @@
-/* LETTERBASE MATH NEW OPERATOR */
+/* 此处放加减乘的事例 */
 math_new_operator = [];
             math_new_operator['+']=(a,b)=>{
                 a=a.toString(),b=b.toString();
@@ -119,7 +119,7 @@ math_new_operator = [];
                 if (a[0] !== '-' && b[0] === '-') sign = '-';
                 a = a.replace('-',''),
                 b = b.replace('-','')
-                if (b === '0') throw "除数不能为0"
+                if (b === '0') return "除数不能为0"
                 var res = '';
                 var ap = (a.split('.')[1] ?? '').length;
                 var bp = (b.split('.')[1] ?? '').length;
@@ -132,6 +132,7 @@ math_new_operator = [];
                 if (bp === the_max) {
                     a = a.padEnd(bp + 1, '0')
                 }
+                a = a.replace(/^0+/,''), b = b.replace(/^0+/,'')
                 function getShortsFloorMinValue(c,d) {
                     var val = 0;
                     while(c[0] !== '-') {
@@ -153,5 +154,6 @@ math_new_operator = [];
                 }
                 res = res.slice(0, res.length - 15) + '.' + res.slice(res.length - 15, res.length - 1)
                 res = res.replace(/^0+/, '').replace(/(?<=\.\d*)0+$|\.0*$/,'');
+                if (res[0] === '.') res = '0' + res;
                 return sign + res;
             }
