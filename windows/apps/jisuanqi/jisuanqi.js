@@ -144,13 +144,8 @@ function fhclick(fhn){
     $('.show_frame .log').innerText='';
 }
 function js(a,b,c){
-    if(b=='+'){
-        return a+c;
-    }else if(b=='-'){
-        return a-c;
-    }else if(b=='*'){
-        return a*c;
-    }else if(b=='/'){
-        return a/c;
+    if(b=='+'||b=='-'||b=='*'||b=='/'){
+        return math_new_operator[b](a,c);
     }
+    throw new Error("Out - b")
 }
